@@ -21,7 +21,6 @@ public class GameCardType {
         isAction = isA;
         name = n;
         description = d;
-        int malek;
     }
     
     public int getPlusActions() {return plusActions;}
