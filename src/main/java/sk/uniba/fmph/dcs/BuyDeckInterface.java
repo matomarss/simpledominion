@@ -7,4 +7,5 @@ public interface BuyDeckInterface
     Optional<CardInterface> buy();
     GameCardType getCardsType();
     int getCardsCount();
+    boolean isEmpty();
 }

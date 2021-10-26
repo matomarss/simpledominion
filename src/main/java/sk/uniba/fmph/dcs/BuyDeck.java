@@ -38,4 +38,9 @@ public class BuyDeck implements BuyDeckInterface
     public int getCardsCount() {
         return cardCount;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return cardCount == 0;
+    }
 }
