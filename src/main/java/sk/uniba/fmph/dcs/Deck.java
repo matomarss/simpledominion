@@ -9,17 +9,8 @@ public class Deck
 {
     private List<CardInterface> cards;
     private DiscardPile discardPile;
-    public Deck(DiscardPile discardPile)
+    public Deck(DiscardPile discardPile, List<CardInterface> cards)
     {
-        List<CardInterface> cards = new LinkedList<>();
-        for(int i = 0; i < 7; i++)
-        {
-            cards.add(BuyDeck.createCard("copper"));
-        }
-        for(int i = 0; i < 3; i++)
-        {
-            cards.add(BuyDeck.createCard("estate"));
-        }
         this.cards = cards;
         shuffle();
 

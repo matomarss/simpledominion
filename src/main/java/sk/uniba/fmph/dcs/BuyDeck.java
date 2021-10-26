@@ -1,35 +1,29 @@
 package sk.uniba.fmph.dcs;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
-public class BuyDeck
+public class BuyDeck implements BuyDeckInterface
 {
     private int cardCount;
+    private GameCardType cardsType;
+    private LinkedList<CardInterface> cards;
 
+    public BuyDeck(GameCardType cardsType, int cardCount)
+    {
+        this.cardsType = cardsType;
+        this.cardCount = cardCount;
+
+        cards = new LinkedList<>();
+        for (int i = 0; i < cardCount; i++)
+        {
+            cards.add(new GameCard(cardsType));
+        }
+    }
     public Optional<CardInterface> buy()
     {
-        return null;
-    }
-
-    public static CardInterface createCard(String name)
-    {
-        switch (name)
-        {
-            case "copper":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_COPPER);
-            case "estate":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_ESTATE);
-            case "festival":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_FESTIVAL);
-            case "market":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_MARKET);
-            case "smithy":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_SMITHY);
-            case "laboratory":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_LABORATORY);
-            case "village":
-                return new GameCard(GameCardType.GAME_CARD_TYPE_VILLAGE);
-            default: return null;
-        }
+        if(cards.isEmpty()) return Optional.empty();
+        return Optional.of(cards.removeFirst());
     }
 }

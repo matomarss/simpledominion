@@ -1,6 +1,7 @@
 package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,16 +11,26 @@ public class Turn
     private DiscardPile discardPile;
     private Deck deck;
     private Play play;
-    private List<BuyDeck> buyDecks;
+    private List<BuyDeckInterface> buyDecks;
     private TurnStatus turnStatus;
 
-    public Turn(TurnStatus ts, List<BuyDeck> buyDecks)
+    public Turn(TurnStatus ts, List<BuyDeckInterface> buyDecks)
     {
         play = new Play();
 
         discardPile = new DiscardPile(new ArrayList<>());
 
-        deck = new Deck(discardPile);
+        List<CardInterface> cards = new LinkedList<>();
+        for(int i = 0; i < 7; i++)
+        {
+            cards.add(buyDecks.get(1).buy().get());
+        }
+        for(int i = 0; i < 3; i++)
+        {
+            cards.add(buyDecks.get(0).buy().get());
+        }
+
+        deck = new Deck(discardPile, cards);
 
         hand = new Hand(deck);
 

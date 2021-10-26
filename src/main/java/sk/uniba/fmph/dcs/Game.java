@@ -8,7 +8,7 @@ public class Game
     private Turn turn;
     private EndGameStrategy endGameStrategy;
 
-    public Game(EndGameStrategy endGameStrategy, List<BuyDeck> buyDecks) // buyDeck sem popiera design
+    public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks) // buyDeck sem asi nepopiera design
     {
         this.endGameStrategy = endGameStrategy;
 
