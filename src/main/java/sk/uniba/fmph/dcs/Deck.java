@@ -41,5 +41,13 @@ public class Deck
         return toReturn;
     }
 
-    //should shuffle
+    public int getPoints()
+    {
+        int points = 0;
+        for(CardInterface card :cards)
+        {
+            points += card.cardType().getPoints();
+        }
+        return points;
+    }
 }

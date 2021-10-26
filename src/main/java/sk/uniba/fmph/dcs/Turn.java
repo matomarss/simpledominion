@@ -81,7 +81,7 @@ public class Turn
         }
         else return false;
     }
-    public boolean endTurn()
+    public void endTurn()
     {
         resetTurnStatus();
 
@@ -89,8 +89,6 @@ public class Turn
         discardPile.addCards(hand.throwAll());
 
         hand.draw(5);
-
-        return true;
     }
 
     private void resetTurnStatus()
@@ -98,5 +96,9 @@ public class Turn
         turnStatus.actions = 1;
         turnStatus.buys = 1;
         turnStatus.coins = 0;
+    }
+    public int getPoints()
+    {
+        return deck.getPoints() + discardPile.getPoints();
     }
 }

@@ -31,6 +31,15 @@ public class DiscardPile {
         cards = new ArrayList<CardInterface>();
         return cards_to_send;
     }
+    public int getPoints()
+    {
+        int points = 0;
+        for(CardInterface card :cards)
+        {
+            points += card.cardType().getPoints();
+        }
+        return points;
+    }
 }
         
         
