@@ -6,12 +6,16 @@ import java.util.List;
 public class Play
 {
     List<CardInterface> cards;
-    public Play(List<CardInterface> _cards)
+    public Play()
     {
-        cards = _cards;
+        cards = new ArrayList<>();
     }
-    public void addCards(List<CardInterface> _cards) {
+    /*public void addCards(List<CardInterface> _cards) {
         cards.addAll(_cards);
+    }*/
+
+    public void throwCard(CardInterface card) {
+        cards.add(card);
     }
 
     public List<CardInterface> throwAll()

@@ -1,12 +1,14 @@
 package sk.uniba.fmph.dcs;
 
+import java.util.List;
+
 public class Game
 {
     private boolean isActionPhase;
     private Turn turn;
     private EndGameStrategy endGameStrategy;
 
-    public Game(EndGameStrategy endGameStrategy)
+    public Game(EndGameStrategy endGameStrategy, List<BuyDeck> buyDecks) // buyDeck sem popiera design
     {
         this.endGameStrategy = endGameStrategy;
 
@@ -15,14 +17,13 @@ public class Game
         ts.actions = 1;
         ts.buys = 1;
         ts.coins = 0;
-        turn = new Turn(ts);
+        turn = new Turn(ts, buyDecks);
     }
     public boolean playCard(int handIdx)
     {
         if(!isActionPhase) return false;
 
-
-        return true;
+        return turn.playCard(handIdx);
     }
     public boolean endPlayCardPhase()
     {

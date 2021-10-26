@@ -1,19 +1,47 @@
 package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Deck
 {
-    List<CardInterface> cards;
-    public Deck(List<CardInterface> _cards)
+    private List<CardInterface> cards;
+    private DiscardPile discardPile;
+    public Deck(DiscardPile discardPile)
     {
-        cards = _cards;
+        List<CardInterface> cards = new LinkedList<>();
+        for(int i = 0; i < 7; i++)
+        {
+            cards.add(BuyDeck.createCard("copper"));
+        }
+        for(int i = 0; i < 3; i++)
+        {
+            cards.add(BuyDeck.createCard("estate"));
+        }
+        this.cards = cards;
+        shuffle();
+
+        this.discardPile = discardPile;
+    }
+
+    private void shuffle()
+    {
+        Collections.shuffle(cards);
     }
 
     public List<CardInterface> draw(int count)
     {
-        List<CardInterface> toReturn = new ArrayList<>();
+        List<CardInterface> toReturn = new LinkedList<>();
+        if(count > cards.size())
+        {
+            cards.addAll(0, discardPile.shuffle());
+        }
+        if(count > cards.size())
+        {
+            count = cards.size();
+        }
         for(int i = cards.size()-1; i > cards.size()-1-count;i--)
         {
             toReturn.add(cards.get(i));
