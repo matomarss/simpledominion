@@ -28,6 +28,7 @@ public class GameCardType {
     public int getPlusCards() {return plusCards;}
     public int getPlusCoins() {return plusCoins;}
     public int getPoints() {return points;}
+    public int getCost() {return cost;}
     public int isAction() {return isAction();}
     public String getName() {return name;}
     public String getDescription() {return description;}

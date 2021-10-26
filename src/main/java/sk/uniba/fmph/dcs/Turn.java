@@ -54,4 +54,26 @@ public class Turn
 
         return false;
     }
+
+    public boolean buyCard(int buyCardIdx)
+    {
+        if(!buyDecks.contains(buyCardIdx)) return false;
+        BuyDeckInterface buyDeck = buyDecks.get(buyCardIdx);
+        if(buyDeck.getCardsCount() <= 0) return false;
+        if(turnStatus.buys <= 0) return false;
+        if(turnStatus.coins < buyDeck.getCardsType().getCost()) return false;
+
+        Optional<CardInterface> toBuy = buyDeck.buy();
+        if(toBuy.isPresent())
+        {
+            turnStatus.buys -= 1;
+            turnStatus.coins -= buyDeck.getCardsType().getCost();
+
+            List<CardInterface> toAdd = new ArrayList<>();
+            toAdd.add(toBuy.get());
+            discardPile.addCards(toAdd);
+            return true;
+        }
+        else return false;
+    }
 }

@@ -21,9 +21,21 @@ public class BuyDeck implements BuyDeckInterface
             cards.add(new GameCard(cardsType));
         }
     }
+
+    @Override
     public Optional<CardInterface> buy()
     {
         if(cards.isEmpty()) return Optional.empty();
         return Optional.of(cards.removeFirst());
+    }
+
+    @Override
+    public GameCardType getCardsType() {
+        return cardsType;
+    }
+
+    @Override
+    public int getCardsCount() {
+        return cardCount;
     }
 }

@@ -27,11 +27,16 @@ public class Game
     }
     public boolean endPlayCardPhase()
     {
+        if(!isActionPhase) return false;
+
+        isActionPhase = false;
         return true;
     }
     public boolean buyCard(int buyCardIdx)
     {
-        return true;
+        if(isActionPhase) return false;
+
+        return turn.buyCard(buyCardIdx);
     }
     public boolean endTurn()
     {
