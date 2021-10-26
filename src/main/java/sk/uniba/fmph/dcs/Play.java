@@ -10,9 +10,6 @@ public class Play
     {
         cards = new ArrayList<>();
     }
-    /*public void addCards(List<CardInterface> _cards) {
-        cards.addAll(_cards);
-    }*/
 
     public void putInto(CardInterface card) {
         cards.add(card);

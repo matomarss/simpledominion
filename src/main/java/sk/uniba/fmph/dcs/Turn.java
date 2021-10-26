@@ -42,23 +42,27 @@ public class Turn
 
     public boolean playCard(int handIdx)
     {
-        if(turnStatus.actions > 0 && hand.isInHand(handIdx) && hand.isActionCard(handIdx))
+        if(!hand.isInHand(handIdx)) return false;
+        if(hand.isActionCard(handIdx))
         {
-            turnStatus.actions -= 1;
-            Optional<CardInterface> playedCard = hand.play(handIdx);
-            int toTake = playedCard.get().evaluate(turnStatus);
-            play.putInto(playedCard.get());
-
-            hand.draw(toTake);
-            return true;
+            if(turnStatus.actions > 0)
+            {
+                turnStatus.actions -= 1;
+            }
+            else return false;
         }
 
-        return false;
+        CardInterface playedCard = hand.play(handIdx);
+        int toTake = playedCard.evaluate(turnStatus);
+        play.putInto(playedCard);
+
+        hand.draw(toTake);
+        return true;
     }
 
     public boolean buyCard(int buyCardIdx)
     {
-        if(!buyDecks.contains(buyCardIdx)) return false;
+        if(buyCardIdx >= buyDecks.size()) return false;
         BuyDeckInterface buyDeck = buyDecks.get(buyCardIdx);
         if(buyDeck.getCardsCount() <= 0) return false;
         if(turnStatus.buys <= 0) return false;
