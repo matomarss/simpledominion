@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Deck
 {
-    private List<CardInterface> cards;
+    private LinkedList<CardInterface> cards;
     private DiscardPile discardPile;
     public Deck(DiscardPile discardPile, List<CardInterface> cards)
     {
-        this.cards = cards;
+        this.cards = new LinkedList<>(cards);
         shuffle();
 
         this.discardPile = discardPile;
@@ -24,7 +24,7 @@ public class Deck
 
     public List<CardInterface> draw(int count)
     {
-        List<CardInterface> toReturn = new LinkedList<>();
+        LinkedList<CardInterface> toReturn = new LinkedList<>();
         if(count > cards.size())
         {
             cards.addAll(0, discardPile.shuffle());
@@ -33,10 +33,10 @@ public class Deck
         {
             count = cards.size();
         }
-        for(int i = cards.size()-1; i > cards.size()-1-count;i--)
+
+        for(int i = 0; i < count;i++)
         {
-            toReturn.add(cards.get(i));
-            cards.remove(cards.get(i));
+            toReturn.add(cards.removeLast());
         }
         return toReturn;
     }

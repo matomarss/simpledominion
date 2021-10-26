@@ -79,3 +79,5 @@ fabric.properties
 .project
 target/surefire-reports/sk.uniba.fmph.dcs.DiscardPileTest.txt
 target/surefire-reports/sk.uniba.fmph.dcs.TestDiscardPile.txt
+src/main/java/sk/uniba/fmph/dcs/Main.java
+*.class

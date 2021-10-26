@@ -1,8 +1,5 @@
 package sk.uniba.fmph.dcs;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
-
 import java.util.List;
 
 public class Game

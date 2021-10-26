@@ -29,10 +29,9 @@ public class Turn
         {
             cards.add(buyDecks.get(0).buy().get());
         }
-
         deck = new Deck(discardPile, cards);
-
         hand = new Hand(deck);
+
 
         this.buyDecks = buyDecks;
 
