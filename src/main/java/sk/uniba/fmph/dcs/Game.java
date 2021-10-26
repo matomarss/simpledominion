@@ -14,9 +14,6 @@ public class Game
 
         isActionPhase = true;
         TurnStatus ts = new TurnStatus();
-        ts.actions = 1;
-        ts.buys = 1;
-        ts.coins = 0;
         turn = new Turn(ts, buyDecks);
     }
     public boolean playCard(int handIdx)
@@ -40,6 +37,11 @@ public class Game
     }
     public boolean endTurn()
     {
-        return true;
+        if(turn.endTurn())
+        {
+            isActionPhase = true;
+            return true;
+        }
+        return false;
     }
 }

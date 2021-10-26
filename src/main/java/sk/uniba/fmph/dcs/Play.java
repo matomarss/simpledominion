@@ -14,7 +14,7 @@ public class Play
         cards.addAll(_cards);
     }*/
 
-    public void throwCard(CardInterface card) {
+    public void putInto(CardInterface card) {
         cards.add(card);
     }
 

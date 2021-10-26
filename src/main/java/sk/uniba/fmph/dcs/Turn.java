@@ -37,6 +37,7 @@ public class Turn
         this.buyDecks = buyDecks;
 
         turnStatus = ts;
+        resetTurnStatus();
     }
 
     public boolean playCard(int handIdx)
@@ -46,7 +47,7 @@ public class Turn
             turnStatus.actions -= 1;
             Optional<CardInterface> playedCard = hand.play(handIdx);
             int toTake = playedCard.get().evaluate(turnStatus);
-            play.throwCard(playedCard.get());
+            play.putInto(playedCard.get());
 
             hand.draw(toTake);
             return true;
@@ -75,5 +76,23 @@ public class Turn
             return true;
         }
         else return false;
+    }
+    public boolean endTurn()
+    {
+        resetTurnStatus();
+
+        discardPile.addCards(play.throwAll());
+        discardPile.addCards(hand.throwAll());
+
+        hand.draw(5);
+
+        return true;
+    }
+
+    private void resetTurnStatus()
+    {
+        turnStatus.actions = 1;
+        turnStatus.buys = 1;
+        turnStatus.coins = 0;
     }
 }

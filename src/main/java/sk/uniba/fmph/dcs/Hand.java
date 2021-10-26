@@ -31,4 +31,11 @@ public class Hand
         CardInterface playedCard = myCards.remove(idx);
         return Optional.of(playedCard);
     }
+
+    public List<CardInterface> throwAll()
+    {
+        List<CardInterface> toReturn = myCards;
+        myCards = new ArrayList<>();
+        return toReturn;
+    }
 }
