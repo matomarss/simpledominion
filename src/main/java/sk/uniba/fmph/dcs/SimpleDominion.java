@@ -18,7 +18,7 @@ public class SimpleDominion implements SimpleDominionInterface{
         endGameStrategies.add(new AtLeastNEmptyDecks(buyDecks,3));
         endGameStrategies.add(new EmptyProvinceCardDeck(buyDecks));
 
-        game = new Game(new EndGameStrategyOr(endGameStrategies), buyDecks);
+        game = new Game(new EndGameStrategyOr(endGameStrategies), buyDecks, new GameCardFactory());
     }
     @Override
     public Optional<GameState> playCard(int handIdx) {

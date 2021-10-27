@@ -2,7 +2,6 @@ package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Hand
 {
@@ -23,7 +22,7 @@ public class Hand
 
     public boolean isInHand(int idx)
     {
-        return idx < myCards.size();
+        return idx < myCards.size() && idx >= 0;
     }
 
     public boolean isActionCard(int idx)

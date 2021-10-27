@@ -8,7 +8,7 @@ public class GameCard implements CardInterface{
         this.cardType = cardType;
     }
     @Override
-    public int evaluate(TurnStatus ts) // zmenil som navratovu hodnotu
+    public int evaluate(TurnStatus ts)
     {
         ts.actions += cardType.getPlusActions();
         ts.buys += cardType.getPlusBuys();

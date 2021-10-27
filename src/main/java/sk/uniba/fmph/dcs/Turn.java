@@ -1,7 +1,6 @@
 package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,24 +13,14 @@ public class Turn
     private List<BuyDeckInterface> buyDecks;
     private TurnStatus turnStatus;
 
-    public Turn(TurnStatus ts, List<BuyDeckInterface> buyDecks)
+    public Turn(TurnStatus ts, List<BuyDeckInterface> buyDecks, GameCardFactoryInterface gameCardFactoryInterface)
     {
         play = new Play();
 
         discardPile = new DiscardPile(new ArrayList<>());
 
-        List<CardInterface> cards = new LinkedList<>();
-        for(int i = 0; i < 7; i++)// zmenit na nie buy ale vytvor
-        {
-            cards.add(buyDecks.get(1).buy().get());
-        }
-        for(int i = 0; i < 3; i++)
-        {
-            cards.add(buyDecks.get(0).buy().get());
-        }
-        deck = new Deck(discardPile, cards);
+        deck = new Deck(discardPile, gameCardFactoryInterface.getInitialCards());
         hand = new Hand(deck);
-
 
         this.buyDecks = buyDecks;
 
@@ -39,7 +28,7 @@ public class Turn
         resetTurnStatus();
     }
 
-    public boolean playCard(int handIdx)//mozno zmenit
+    public boolean playCard(int handIdx)
     {
         if(!hand.isInHand(handIdx)) return false;
         if(hand.isActionCard(handIdx))

@@ -10,15 +10,16 @@ public class Game
     private boolean isGameOver;
     private boolean isWinner;
 
-    public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks) // buyDeck sem asi nepopiera design
+    public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks, GameCardFactoryInterface gameCardFactoryInterface) // buyDeck sem asi nepopiera design
     {
         this.endGameStrategy = endGameStrategy;
 
         isActionPhase = true;
         isGameOver = false;
         isWinner = false;
+
         TurnStatus ts = new TurnStatus();
-        turn = new Turn(ts, buyDecks);
+        turn = new Turn(ts, buyDecks, gameCardFactoryInterface);
     }
     public boolean playCard(int handIdx)
     {
