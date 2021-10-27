@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Deck
+public class Deck implements DeckInterface
 {
     private LinkedList<CardInterface> cards;
-    private DiscardPile discardPile;
-    public Deck(DiscardPile discardPile, List<CardInterface> cards)
+    private DiscardPileInterface discardPile;
+    public Deck(DiscardPileInterface discardPile, List<CardInterface> cards)
     {
         this.cards = new LinkedList<>(cards);
         shuffle();
@@ -21,6 +21,7 @@ public class Deck
         Collections.shuffle(cards);
     }
 
+    @Override
     public List<CardInterface> draw(int count)
     {
         LinkedList<CardInterface> toReturn = new LinkedList<>();
@@ -40,6 +41,7 @@ public class Deck
         return toReturn;
     }
 
+    @Override
     public int getPoints()
     {
         int points = 0;

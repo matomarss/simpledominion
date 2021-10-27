@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Hand
 {
-    private Deck myDeck;
+    private DeckInterface myDeck;
     private List<CardInterface> myCards;
 
-    public Hand(Deck herDeck)
+    public Hand(DeckInterface herDeck)
     {
         myDeck = herDeck;
         myCards = new ArrayList<>();
