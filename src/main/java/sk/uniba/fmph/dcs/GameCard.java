@@ -10,11 +10,11 @@ public class GameCard implements CardInterface{
     @Override
     public int evaluate(TurnStatus ts) // zmenil som navratovu hodnotu
     {
-        ts.actions += cardType.plusActions;
-        ts.buys += cardType.plusBuys;
-        ts.coins += cardType.plusCoins;
+        ts.actions += cardType.getPlusActions();
+        ts.buys += cardType.getPlusBuys();
+        ts.coins += cardType.getPlusCoins();
 
-        return cardType.plusCards;
+        return cardType.getPlusCards();
     }
 
     @Override

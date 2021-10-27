@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DiscardPile {
-    List<CardInterface> cards;
+    private List<CardInterface> cards;
 
     public DiscardPile(List<CardInterface> _cards) {
         cards = _cards;

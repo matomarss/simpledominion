@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Play
 {
-    List<CardInterface> cards;
+    private List<CardInterface> cards;
     public Play()
     {
         cards = new ArrayList<>();

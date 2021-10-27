@@ -6,14 +6,12 @@ import java.util.Optional;
 
 public class BuyDeck implements BuyDeckInterface
 {
-    private int cardCount;
     private GameCardType cardsType;
     private LinkedList<CardInterface> cards;
 
     public BuyDeck(GameCardType cardsType, int cardCount)
     {
         this.cardsType = cardsType;
-        this.cardCount = cardCount;
 
         cards = new LinkedList<>();
         for (int i = 0; i < cardCount; i++)
@@ -36,11 +34,11 @@ public class BuyDeck implements BuyDeckInterface
 
     @Override
     public int getCardsCount() {
-        return cardCount;
+        return cards.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return cardCount == 0;
+        return cards.size()==0;
     }
 }

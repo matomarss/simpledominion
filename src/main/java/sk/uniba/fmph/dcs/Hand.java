@@ -28,7 +28,7 @@ public class Hand
 
     public boolean isActionCard(int idx)
     {
-        return myCards.get(idx).cardType().isAction;
+        return myCards.get(idx).cardType().isAction();
     }
 
     public CardInterface play(int idx)

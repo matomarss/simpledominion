@@ -8,6 +8,7 @@ public class Game
     private final Turn turn;
     private final EndGameStrategy endGameStrategy;
     private boolean isGameOver;
+    private boolean isWinner;
 
     public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks) // buyDeck sem asi nepopiera design
     {
@@ -15,6 +16,7 @@ public class Game
 
         isActionPhase = true;
         isGameOver = false;
+        isWinner = false;
         TurnStatus ts = new TurnStatus();
         turn = new Turn(ts, buyDecks);
     }
@@ -47,20 +49,26 @@ public class Game
     {
         if(isGameOver) return false;
 
-        endOrWinner.setFirst(endGameStrategy.isGameOver());
+        turn.endTurn();
+        boolean isGameOver = endGameStrategy.isGameOver();
+
+        endOrWinner.setFirst(isGameOver);
         endOrWinner.setSecond(false);
+
         if(isGameOver)
         {
-            endOrWinner.setSecond(endGame());
+            endGame();
+            endOrWinner.setSecond(isWinner);
         }
         isActionPhase = true;
 
         return true;
     }
-    private boolean endGame()
+    private void endGame()
     {
-        int points = turn.getPoints();
         isGameOver = true;
-        return points >= 30;
+
+        int points = turn.getPoints();
+        isWinner = points >= 30;
     }
 }

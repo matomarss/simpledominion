@@ -21,7 +21,7 @@ public class Turn
         discardPile = new DiscardPile(new ArrayList<>());
 
         List<CardInterface> cards = new LinkedList<>();
-        for(int i = 0; i < 7; i++)
+        for(int i = 0; i < 7; i++)// zmenit na nie buy ale vytvor
         {
             cards.add(buyDecks.get(1).buy().get());
         }
@@ -39,7 +39,7 @@ public class Turn
         resetTurnStatus();
     }
 
-    public boolean playCard(int handIdx)
+    public boolean playCard(int handIdx)//mozno zmenit
     {
         if(!hand.isInHand(handIdx)) return false;
         if(hand.isActionCard(handIdx))
