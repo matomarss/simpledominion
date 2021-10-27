@@ -8,7 +8,7 @@ public class AtLeastNEmptyDecks implements EndGameStrategy{
     public AtLeastNEmptyDecks(List<BuyDeckInterface> buyDecks, int n)
     {
         this.buyDecks = buyDecks;
-        this.n = n;
+        this.n = Math.abs(n);
     }
     @Override
     public boolean isGameOver()
