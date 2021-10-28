@@ -2,8 +2,8 @@ package sk.uniba.fmph.dcs;
 
 public class GameCard implements CardInterface{
 
-    private GameCardType cardType;
-    public GameCard(GameCardType cardType)
+    private GameCardTypeInterface cardType;
+    public GameCard(GameCardTypeInterface cardType)
     {
         this.cardType = cardType;
     }
@@ -18,7 +18,7 @@ public class GameCard implements CardInterface{
     }
 
     @Override
-    public GameCardType cardType()
+    public GameCardTypeInterface cardType()
     {
         return cardType;
     }

@@ -2,6 +2,7 @@ package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Hand
 {
@@ -17,7 +18,7 @@ public class Hand
 
     public void draw(int count)
     {
-        myCards.addAll(myDeck.draw(count));
+        myCards.addAll(myDeck.draw(Math.abs(count)));
     }
 
     public boolean isInHand(int idx)
@@ -27,12 +28,16 @@ public class Hand
 
     public boolean isActionCard(int idx)
     {
+        if(!isInHand(idx)) return false;
+
         return myCards.get(idx).cardType().isAction();
     }
 
-    public CardInterface play(int idx)
+    public Optional<CardInterface> play(int idx)
     {
-        return myCards.remove(idx);
+        if(!isInHand(idx)) return Optional.empty();
+
+        return Optional.of(myCards.remove(idx));
     }
 
     public List<CardInterface> throwAll()

@@ -40,9 +40,9 @@ public class Turn
             else return false;
         }
 
-        CardInterface playedCard = hand.play(handIdx);
-        int toTake = playedCard.evaluate(turnStatus);
-        play.putInto(playedCard);
+        Optional<CardInterface> playedCard = hand.play(handIdx);
+        int toTake = playedCard.get().evaluate(turnStatus);
+        play.putInto(playedCard.get());
 
         hand.draw(toTake);
         return true;

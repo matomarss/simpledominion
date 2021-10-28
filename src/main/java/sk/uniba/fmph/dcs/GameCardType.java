@@ -1,6 +1,6 @@
 package sk.uniba.fmph.dcs;
 
-public class GameCardType {
+public class GameCardType implements GameCardTypeInterface{
     private int plusActions;
     private int plusBuys;
     private int plusCards;
