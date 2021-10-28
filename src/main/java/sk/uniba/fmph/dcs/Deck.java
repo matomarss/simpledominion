@@ -27,7 +27,7 @@ public class Deck implements DeckInterface
         LinkedList<CardInterface> toReturn = new LinkedList<>();
         if(count > cards.size())
         {
-            cards.addAll(0, discardPile.shuffle());
+            cards.addAll(0,discardPile.shuffle());
         }
         if(count > cards.size())
         {
@@ -36,7 +36,7 @@ public class Deck implements DeckInterface
 
         for(int i = 0; i < count;i++)
         {
-            toReturn.add(cards.removeLast());
+            toReturn.add(cards.removeFirst());
         }
         return toReturn;
     }

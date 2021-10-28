@@ -21,6 +21,10 @@ public class Game
         TurnStatus ts = new TurnStatus();
         turn = new Turn(ts, buyDecks, gameCardFactoryInterface);
     }
+    public boolean isGameOver()
+    {
+        return isGameOver;
+    }
     public boolean playCard(int handIdx)
     {
         if(isGameOver) return false;

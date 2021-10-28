@@ -66,5 +66,11 @@ public class DiscardPileTest  {
         assertEquals(pile2.getSize(), 2);
         assertTopIs(pile2, "Copper");
     }
+    @Test
+    public void test_get_points() {
+        setUp();
+        assertEquals(1,pile1.getPoints());
+        assertEquals(0,pile2.getPoints());
+    }
  }
         

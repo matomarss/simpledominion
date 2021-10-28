@@ -5,6 +5,11 @@ public class Couple<T>
     private T value1;
     private T value2;
 
+    public Couple()
+    {
+        this.value1 = null;
+        this.value2 = null;
+    }
     public Couple(T value1, T value2)
     {
         this.value1 = value1;
