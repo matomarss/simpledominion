@@ -3,7 +3,7 @@ package sk.uniba.fmph.dcs;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GameCardFactory implements GameCardFactoryInterface
+public class GameCardFactory7c3e implements GameCardFactoryInterface
 {
     @Override
     public List<CardInterface> getInitialCards()
