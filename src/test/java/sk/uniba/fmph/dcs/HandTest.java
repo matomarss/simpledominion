@@ -16,8 +16,11 @@ class StubDeck implements DeckInterface
     public List<CardInterface> draw(int count)
     {
         if(count == 0) return new ArrayList<>();
+
         cards = new ArrayList<>();
+
         cards.add(new FakeCard(new MockedGameCardTypeAction(0)));
+
         for(int i = 1; i < count; i++)
         {
             cards.add(new FakeCard(new MockedGameCardTypeNonAction(i)));
@@ -95,54 +98,102 @@ public class HandTest
 {
     private Hand h1;
     private List<CardInterface> cdl;
+    private List<String> l ;
     private void setUp()
     {
         h1 = new Hand(new StubDeck());
     }
 
     @Test
-    public void testDrawAndThrowAllWithInitialCards()
+    public void testDrawAndThrowAllAndGetCardsWithInitialCards()
     {
         setUp();
 
-        List<CardInterface> cdl = h1.throwAll();
+        l = h1.getCards();
+        cdl = h1.throwAll();
+
         assertEquals(5,cdl.size());
+        assertEquals(5,l.size());
+
+        assertEquals(l.get(0),cdl.get(0).cardType().getName());
+
         assertTrue(cdl.get(0).cardType().isAction());
         assertEquals(0,((MockedGameCardTypeAction)(cdl.get(0).cardType())).getVal());
+
         for(int i =1; i < cdl.size(); i++)
         {
+            assertEquals(l.get(i),cdl.get(i).cardType().getName());
+
             assertFalse(cdl.get(i).cardType().isAction());
             assertEquals(i,((MockedGameCardTypeNonAction)(cdl.get(i).cardType())).getVal());
         }
     }
     @Test
-    public void testDrawAndThrowAllWithNewCards()
+    public void testThrowAllAndGetCardsEmptyHand()
     {
         setUp();
+        cdl = h1.throwAll();
+        cdl = h1.throwAll();
 
-        cdl = h1.throwAll();
-        cdl = h1.throwAll();
+        l = h1.getCards();
         assertEquals(0,cdl.size());
+        assertEquals(0,l.size());
+    }
+    @Test
+    public void testThrowAllAdGetCardsDraw0()
+    {
+        setUp();
+        cdl = h1.throwAll();
+
 
         h1.draw(0);
+        l = h1.getCards();
+        assertEquals(0,l.size());
         cdl = h1.throwAll();
         assertEquals(0,cdl.size());
+    }
+
+    @Test
+    public void testGetCardsAndThrowAllWithDrawNewCards()
+    {
+        setUp();
+        cdl = h1.throwAll();
+
         for(int j = 1; j < 100; j++)
         {
             h1.draw(j);
 
+            l = h1.getCards();
+            assertEquals(j,l.size());
+
             cdl = h1.throwAll();
             assertEquals(j,cdl.size());
+
+            assertEquals(l.get(0),cdl.get(0).cardType().getName());
+
             assertTrue(cdl.get(0).cardType().isAction());
             assertEquals(0,((MockedGameCardTypeAction)(cdl.get(0).cardType())).getVal());
+
             for(int i = 1; i < cdl.size(); i++)
             {
+                assertEquals(l.get(i),cdl.get(i).cardType().getName());
+
                 assertFalse(cdl.get(i).cardType().isAction());
                 assertEquals(i,((MockedGameCardTypeNonAction)(cdl.get(i).cardType())).getVal());
             }
-            cdl = h1.throwAll();
-            assertEquals(0,cdl.size());
         }
+    }
+    @Test
+    public void testThrowAllGetCardsAfterThrow()
+    {
+        setUp();
+        cdl = h1.throwAll();
+
+        l = h1.getCards();
+        assertEquals(0,l.size());
+
+        cdl = h1.throwAll();
+        assertEquals(0,cdl.size());
     }
     @Test
     public void multipleDrawTest()
@@ -155,7 +206,8 @@ public class HandTest
         {
             h1.draw(i);
         }
-
+        l = h1.getCards();
+        assertEquals(15, l.size());
         cdl = h1.throwAll();
         assertEquals(15, cdl.size());
     }
@@ -232,22 +284,22 @@ public class HandTest
         assertFalse(h1.isActionCard(6));
     }
     @Test
-    public void testPlay()
+    public void testPlayRightCards()
     {
         setUp();
 
         Optional<CardInterface> c = h1.play(0);
+
         assertTrue(c.get().cardType().isAction());
+
         assertEquals(0,((MockedGameCardTypeAction)(c.get().cardType())).getVal());
+
         for(int i = 1; i < 5; i++)
         {
             c = h1.play(0);
             assertFalse(c.get().cardType().isAction());
             assertEquals(i,((MockedGameCardTypeNonAction)(c.get().cardType())).getVal());
         }
-        assertFalse(h1.isActionCard(6));
-        cdl = h1.throwAll();
-        assertEquals(0, cdl.size());
     }
 
     @Test

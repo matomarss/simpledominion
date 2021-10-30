@@ -69,6 +69,12 @@ public class Game
 
         return true;
     }
+
+    public List<String> getCardsInHand()
+    {
+        return turn.getCardsInHand();
+    }
+
     private void endGame()
     {
         isGameOver = true;

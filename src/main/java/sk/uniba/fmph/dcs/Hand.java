@@ -46,4 +46,16 @@ public class Hand
         myCards = new ArrayList<>();
         return toReturn;
     }
+
+    public List<String> getCards()
+    {
+        List<String> toReturn = new ArrayList<>();
+        int i = 0;
+        while(isInHand(i))
+        {
+            toReturn.add(myCards.get(i).cardType().getName());
+            i++;
+        }
+        return toReturn;
+    }
 }

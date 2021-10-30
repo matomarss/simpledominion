@@ -89,4 +89,9 @@ public class Turn
     {
         return deck.getPoints() + discardPile.getPoints();
     }
+
+    public List<String> getCardsInHand()
+    {
+        return hand.getCards();
+    }
 }

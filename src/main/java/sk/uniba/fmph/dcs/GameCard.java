@@ -22,4 +22,9 @@ public class GameCard implements CardInterface{
     {
         return cardType;
     }
+
+    @Override
+    public String toString() {
+        return cardType.getName();
+    }
 }
