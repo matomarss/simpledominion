@@ -34,7 +34,7 @@ public class TurnTest
     {
         setUp();
 
-        t1.endTurn();
+        t1.end();
         assertEquals(1, ts1.actions);
         assertEquals(1, ts1.buys);
         assertEquals(0, ts1.coins);
@@ -48,7 +48,7 @@ public class TurnTest
         assertTrue(t1.playCard(0));
         assertTrue(t2.playCard(0));
 
-        t1.endTurn();
+        t1.end();
         assertEquals(1, ts1.actions);
         assertEquals(1, ts1.buys);
         assertEquals(0, ts1.coins);

@@ -10,7 +10,7 @@ public class Game
     private boolean isGameOver;
     private boolean isWinner;
 
-    public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks, GameCardFactoryInterface gameCardFactoryInterface) // buyDeck sem asi nepopiera design
+    public Game(EndGameStrategy endGameStrategy, List<BuyDeckInterface> buyDecks, GameCardFactoryInterface gameCardFactoryInterface)
     {
         this.endGameStrategy = endGameStrategy;
 
@@ -54,7 +54,7 @@ public class Game
     {
         if(isGameOver) return false;
 
-        turn.endTurn();
+        turn.end();
         boolean isGameOver = endGameStrategy.isGameOver();
 
         endOrWinner.setFirst(isGameOver);

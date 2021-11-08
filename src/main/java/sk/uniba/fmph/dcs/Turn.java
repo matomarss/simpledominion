@@ -25,7 +25,7 @@ public class Turn
         this.buyDecks = buyDecks;
 
         turnStatus = ts;
-        resetTurnStatus();
+        resetStatus();
     }
 
     public boolean playCard(int handIdx)
@@ -69,9 +69,9 @@ public class Turn
         }
         else return false;
     }
-    public void endTurn()
+    public void end()
     {
-        resetTurnStatus();
+        resetStatus();
 
         discardPile.addCards(play.throwAll());
         discardPile.addCards(hand.throwAll());
@@ -79,7 +79,7 @@ public class Turn
         hand.draw(5);
     }
 
-    private void resetTurnStatus()
+    private void resetStatus()
     {
         turnStatus.actions = 1;
         turnStatus.buys = 1;
