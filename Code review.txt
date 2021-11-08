@@ -1,0 +1,4 @@
+1. Je to zväčša ok, osobne si nie som dva krát istý tým premenovaním triedy NiečoNiečoAnd na NiečoNiečoOr, keďže to vybočuje z toho návrhu a nikdy nevieš, že či nebude mať vyučujúci v pláne to namontovať na nejaké svoje testy a podobne
+	(aj keď sa to nezdá pravdepodobné ani mne samému)
+2. Tiež si osobne myslím, že tie veci, čo sú v diagrame priradené ku game, mal asi robiť v game a nie zavolať metódu v turne ktorá spraví gro roboty.
+3. Myslím teda, že to máš v pohode, pokiaľ som niečo neprehliadol.
